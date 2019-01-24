@@ -12,9 +12,23 @@ class Person{
         this.gender = personAttr.gender;
     }
     speak(){
-        console.log(`Hello my name is ${this.name}, I am from ${this.location}`)
+        return `Hello my name is ${this.name}, I am from ${this.location}`;
     };
 };
+
+const eren = new Person({
+    name: 'Eren',
+    age:20,
+    location: 'Wall Maria',
+    gender: 'M',
+});
+const mikasa = new Person({
+    name: 'Mikasa',
+    age: 21,
+    location: 'Wall Sina',
+    gender: 'F',
+});
+
 // ------------Instructor-----------------
 //   * `specialty` what the Instructor is good at i.e. 'redux'
 //   * `favLanguage` i.e. 'JavaScript, Python, Elm etc.'
@@ -30,17 +44,72 @@ class Instructor extends Person{
         this.catchPhrase = instructorAttr.catchPhrase;
     }
     demo(subject){
-        console.log(`Today we are learning about ${subject}`);
+        return `Today we are learning about ${subject}`;
     };
     grade(student, subject){
-        console.log(`${student.name} receives a perfect score on ${subject}`)
+        return `${student.name} receives a perfect score on ${subject}`;
     };
 }
+const armin = new Instructor({
+    name: 'Armin',
+    age:19,
+    location: 'Wall Maria',
+    gender: 'M',
+    specialty: 'Critical Thinking',
+    favLanguage: 'Japanese', 
+    catchPhrase: 'I have a plan',
+});
+const sasha = new Instructor({
+    name: 'Sasha',
+    age: 24,
+    location: 'Wall Sina',
+    gender: 'F',
+    specialty: 'Eating',
+    favLanguage: 'English', 
+    catchPhrase: 'Are you going to finish that?',
+});
 
-
-
-
-
+// ------------PM-----------------
+// * `gradClassName`: i.e. CS1
+// * `favInstructor`: i.e. Sean
+// * ProjectManangers have the following Methods:
+// * `standUp` a method that takes in a slack channel and logs `{name} announces to {channel}, @channel standy times!​​​​​
+// * `debugsCode` a method that takes in a student object and a subject and logs out `{name} debugs {student.name}'s code on {subject}`
+class PM extends Instructor{
+    constructor(pmAttr){
+        super(pmAttr)
+        this.gradClassName = pmAttr.gradClassName;
+        this.favInstructor = pmAttr.favInstructor;
+    }
+    standUp(channel){
+        return `${this.name} announces to ${channel}, @channel stand times!​​​​​`;
+    };
+    debugsCode(student, subject){
+        return `${this.name} debugs ${student.name}'s code on ${subject}`;
+    }
+}
+const annie = new PM({
+    name: 'Annie',
+    age: 23,
+    location: 'Wall Sina',
+    gender: 'F',
+    specialty: 'Hand to hand combat',
+    favLanguage: 'Japanese', 
+    catchPhrase: 'I dont care',
+    gradClassName: 'Mistery',
+    favInstructor: 'Kieth Sadies',
+});
+const historia = new PM({
+    name: 'Historia',
+    age: 18,
+    location: 'Wall Sina',
+    gender: 'F',
+    specialty: 'Compassion',
+    favLanguage: 'English', 
+    catchPhrase: 'Are you alright?',
+    gradClassName: 'Royalty',
+    favInstructor: 'Hange Zoe',
+});
 
 // ------------Student-----------------
 // * `previousBackground` i.e. what the Student used to do before Lambda School
@@ -58,33 +127,52 @@ class Student extends Person{
         this.favSubjects = studentAttr.favSubjects;
     }
     listsSubjects(){
-       console.log(`${this.favSubjects}`);
+       return `${this.favSubjects}`;
     };
-    PRAssignment(student, subject){
-        console.log(`${student.name} has submitted a PR for ${subject}`);
+    PRAssignment(subject){
+        return `${this.name} has submitted a PR for ${subject}`;
     };
-    sprintChallenge(){
-        console.log(`${student.name} has begun sprint challenge on ${subject}`)
+    sprintChallenge(subject){
+        return `${this.name} has begun sprint challenge on ${subject}`;
     }
 }
+const erwin = new Student({
+    name: 'Erwin',
+    age:40,
+    location: 'Wall Sina',
+    gender: 'M',
+    previousBackground: 'Teacher',
+    className: 'Scouts',
+    favSubjects: ['Nape Disecting', 'Titan behavior', 'Menuever gear']
+});
+const levi = new Student({
+    name: 'Levi',
+    age: 28,
+    location: 'Wall Maria',
+    gender: 'M',
+    previousBackground: 'troops',
+    className: 'Survey Corps',
+    favSubjects: ['None']
+});
 
-// ------------PM-----------------
-// * `gradClassName`: i.e. CS1
-// * `favInstructor`: i.e. Sean
-// * ProjectManangers have the following Methods:
-// * `standUp` a method that takes in a slack channel and logs `{name} announces to {channel}, @channel standy times!​​​​​
-// * `debugsCode` a method that takes in a student object and a subject and logs out `{name} debugs {student.name}'s code on {subject}`
-class PM extends Instructor{
-    constructor(pmAttr){
-        super(pmAttr)
-        this.gradClassName = pmAttr.gradClassName;
-        this.favInstructor = pmAttr.favInstructor;
-    }
-    standUp(channel){
-        console.log(`${this.name} announces to ${channel}, @channel standy times!​​​​​`)
-    };
-    debugsCode(student, subject){
-        console.log(`${this.name} debugs ${student.name}'s code on ${subject}`)
-    }
-}
-
+//Person
+console.log(eren);
+console.log(mikasa);
+console.log(mikasa.speak());
+console.log(eren.speak());
+//Instructor
+console.log(armin);
+console.log(sasha);
+console.log(armin.demo('Attack on Titan'));
+console.log(sasha.grade(levi,'Killing Titans'));
+//PM
+console.log(annie);
+console.log(historia);
+console.log(annie.standUp('Defence'));
+console.log(historia.debugsCode(erwin, 'Survival'));
+//Student
+console.log(erwin);
+console.log(levi);
+console.log(erwin.listsSubjects());
+console.log(levi.PRAssignment('Wall Scaling'));
+console.log(erwin.sprintChallenge('Survival'));
